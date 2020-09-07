@@ -14,11 +14,13 @@
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
+    <NoDefaultExcludes >true</NoDefaultExcludes >
   </PropertyGroup>
 
   <ItemGroup>
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
     <Compile Remove="**\*" />
+    <Content Include="templates\**\.gitignore"/>
   </ItemGroup>
 
 </Project>

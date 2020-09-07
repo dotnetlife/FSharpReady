@@ -19,6 +19,7 @@ let release = ReleaseNotes.load "RELEASE_NOTES.md"
 Target.create "Clean" (fun _ ->
     !! "src/**/bin"
     ++ "src/**/obj"
+    ++ "nuget"
     |> Shell.cleanDirs 
 )
 
