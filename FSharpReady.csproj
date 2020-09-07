@@ -15,6 +15,9 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
     <NoDefaultExcludes >true</NoDefaultExcludes >
+    <PackageLicenseUrl>https://github.com/dotnetlife/FSharpReady/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/dotnetlife/FSharpReady</PackageProjectUrl>
+
   </PropertyGroup>
 
   <ItemGroup>
