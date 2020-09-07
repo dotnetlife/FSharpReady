@@ -1,0 +1,5 @@
+type project
+id
+    FSharpReady
+language
+    F#
