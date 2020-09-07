@@ -10,4 +10,47 @@
     "type": "project"
   },
   "sourceName": "FSharpReady",
+  "symbols": {
+    "authors": {
+      "type": "parameter",
+      "defaultValue": "CSBiology",
+      "replaces": "authorsPlaceHolder"
+    },
+    "description": {
+      "type": "parameter",
+      "defaultValue": "FSharp Library",
+      "replaces": "descriptionPlaceHolder"
+    },
+    "owner": {
+      "type": "parameter",
+      "defaultValue": "CSBiology",
+      "replaces": "ownersPlaceHolder"
+    },
+    "requireLicenseAcceptance": {
+      "type": "parameter",
+      "defaultValue": "false",
+      "replaces": "requireLicenseAcceptancePlaceHolder"
+    },
+    "copyright": {
+      "type": "parameter",
+      "defaultValue": "Copyright 2020",
+      "replaces": "copyrightPlaceHolder"
+    },
+    "tags": {
+      "type": "parameter",
+      "defaultValue": "F# FSharp bioinformatics datascience biology",
+      "replaces": "tagsPlaceHolder"
+    },
+    "summary": {
+      "type": "parameter",
+      "defaultValue": "FSharp Library",
+      "replaces": "summaryPlaceHolder"
+    },
+    "implementation": {
+      "type": "parameter",
+      "defaultValue": "netstandard2.1",
+      "replaces": "implementationPlaceHolder"
+    }
+  }
 }
+
