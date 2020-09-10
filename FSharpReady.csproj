@@ -2,22 +2,26 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>0.0.1</PackageVersion>
+    <PackageVersion>0.0.2</PackageVersion>
     <PackageId>FSharpReady</PackageId>
     <Title>FSharpReady</Title>
     <Authors>HLWeil</Authors>
     <Description>Simple FSharp project template</Description>
-    <PackageTags>dotnet-new;templates;F#:FSharp</PackageTags>
-
+    <PackageTags>dotnet-new;templates;F#;FSharp</PackageTags>
     <TargetFramework>netstandard2.1</TargetFramework>
-
+    <PackageReleaseNotes>
+      **Bugfixes:**
+        * Allow More different Dotnet SDK Versions.
+        * Add FSharp.Core to paket.dependancies and paket.references
+        * Fix Realease_Notes   
+    </PackageReleaseNotes>
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
     <NoDefaultExcludes >true</NoDefaultExcludes >
-    <PackageLicenseUrl>https://github.com/dotnetlife/FSharpReady/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/dotnetlife/FSharpReady</PackageProjectUrl>
-
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    
   </PropertyGroup>
 
   <ItemGroup>

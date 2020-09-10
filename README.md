@@ -4,7 +4,7 @@ FSharpReady is a simple dotnet template for creating and packing a F# library pr
 
 ### Quick installation guide:
 
-0. .NET Core has to be installed
+0. .NET Core 3.1.100 or higher 3.1 build has to be installed
 
 1. Download and install the FSharpReady template from nuget
   <pre>
@@ -24,7 +24,7 @@ FSharpReady is a simple dotnet template for creating and packing a F# library pr
 
 3. Set the dependencies in the paket.dependancies and the paket.references file
 
-4. Install the dependancies 
+4. Install the dependancies (dotnet tool restore might be necessary first)
   <pre>
   dotnet paket update
   </pre>
