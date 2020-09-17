@@ -19,7 +19,7 @@ let release = ReleaseNotes.load "RELEASE_NOTES.md"
 Target.create "Clean" (fun _ ->
     !! "src/**/bin"
     ++ "src/**/obj"
-    ++ "nuget"
+    ++ "temp"
     |> Shell.cleanDirs 
 )
 
@@ -33,7 +33,7 @@ Target.create "Pack" (fun _ ->
     Paket.pack(fun p -> 
         { p with
             ToolType = ToolType.CreateLocalTool()
-            OutputPath = "nuget"
+            OutputPath = "temp"
             Version = release.NugetVersion
             ReleaseNotes = release.Notes |> String.toLines })
 )

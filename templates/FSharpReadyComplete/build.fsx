@@ -68,7 +68,9 @@ let gitHome = sprintf "%s/%s" "https://github.com" gitOwner
 let gitName = "FSharpReady"
 
 let website = "/FSharpReady"
-let pkgDir = "pkg"
+let pkgDir = "temp"
+let docLink = "https://ownersPlaceHolder.github.io/FSharpReady/"
+
 
 //Build configurations
 let monoConfiguration = DotNet.Custom "Mono"
@@ -114,7 +116,7 @@ let dotnetProjectPaths =
 let clean = 
     BuildTask.create "clean" [] {
         Shell.cleanDirs [
-            "bin"; "temp"; "pkg" 
+            "bin"; "temp"; "temp" 
             yield! allProjectPaths |> Seq.map (fun x -> x </> "bin")
             ]
     }
@@ -472,8 +474,8 @@ let buildLocalDocs =
         Shell.copyRecursive "docs/output" tempDocsDir true  |> printfn "%A"
         Shell.replaceInFiles 
             (seq {
-                yield "href=\"/" + project + "/","href=\""
-                yield "src=\"/" + project + "/","src=\""}) 
+                yield "href=\"" + docLink + "/","href=\""
+                yield "src=\"" + docLink + "/","src=\""}) 
             (Directory.EnumerateFiles tempDocsDir |> Seq.filter (fun x -> x.EndsWith(".html")))
     }
 

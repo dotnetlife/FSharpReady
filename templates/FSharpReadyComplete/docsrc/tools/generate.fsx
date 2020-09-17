@@ -20,7 +20,7 @@
 #r "RazorEngine.NetCore.dll"
 #r "FSharp.Formatting.Razor.dll"
 
-let website = "https://CSBiology.github.io/FSharpReady/"
+let website = "https://ownersPlaceHolder.github.io/FSharpReady/"
 
 open System.IO
 open FSharp.Formatting.Razor
@@ -84,7 +84,9 @@ let layoutRoots =
 let layoutRootsAll = Dictionary<string, string list>()
 layoutRootsAll.Add("en",layoutRoots)
     
-let copyFiles () = copyRecursive files output
+let copyFiles () = 
+    File.Copy(formatting + "styles/style.css",files + "/style/style.css",true)
+    copyRecursive files output
     
 // Build API reference from XML comments
 let buildReference () =
