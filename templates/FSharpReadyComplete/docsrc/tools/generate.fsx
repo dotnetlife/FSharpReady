@@ -20,7 +20,7 @@
 #r "RazorEngine.NetCore.dll"
 #r "FSharp.Formatting.Razor.dll"
 
-let website = "https://CSBiology.github.io/BioFSharp/"
+let website = "https://CSBiology.github.io/FSharpReady/"
 
 open System.IO
 open FSharp.Formatting.Razor

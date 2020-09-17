@@ -27,3 +27,4 @@ You can get the stable versions of all FSharpReady packages from nuget:
 Install-Package FSharpReady
 paket add FSharpReady
 </pre>
+*)

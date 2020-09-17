@@ -52,6 +52,9 @@ module MessagePrompts =
 
     let releaseDocsMsg = """This will push the docs to gh-pages. Remember building the docs prior to this. Do you want to continue?"""
 
+let mutable prereleaseTag = ""
+let mutable isPrerelease = false
+
 let project         = "FSharpReady"
 let summary         = "summaryPlaceHolder"
 let solutionFile    = "FSharpReady.sln"
@@ -90,7 +93,7 @@ let allProjectPaths =
     |>  Seq.map 
         (fun f -> (Path.getDirectory f))
 
-// projects built with the mono configuration (ik cant get bioDB to work here)
+// projects built with the mono configuration
 let monoProjectPaths =
     !! "src/**/*.fsproj"
     |>  Seq.map 

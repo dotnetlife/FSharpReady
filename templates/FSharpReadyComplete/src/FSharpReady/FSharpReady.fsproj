@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>implementationPlaceHolder</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
