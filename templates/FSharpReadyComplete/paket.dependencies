@@ -12,6 +12,8 @@ nuget Expecto.FsCheck
 
 group Formatting
 
+	storage: packages
+
     source https://www.nuget.org/api/v2
     source https://ci.appveyor.com/nuget/fsharp-formatting
     nuget FSharp.Compiler.Service 34.1.1
