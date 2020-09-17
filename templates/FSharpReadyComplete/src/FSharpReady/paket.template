@@ -1,0 +1,25 @@
+type project
+id
+    FSharpReady
+authors 
+    authorsPlaceHolder
+description
+	description
+owners
+    ownersPlaceHolder
+licenseUrl
+    https://github.com/ownersPlaceHolder/FSharpReady/blob/master/LICENSE
+requireLicenseAcceptance
+    requireLicenseAcceptancePlaceHolder
+language
+    F#
+copyright
+    copyrightPlaceHolder
+tags
+    tagsPlaceHolder
+summary
+    summaryPlaceHolder
+repositoryType
+    git
+repositoryUrl
+    https://github.com/ownersPlaceHolder/FSharpReady
