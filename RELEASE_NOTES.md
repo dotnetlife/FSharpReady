@@ -6,6 +6,9 @@
 * a test environment
 * additional build targets
 
+**Changes**
+* shorten shortnames of templates to fsr-slim and fsr-complete
+
 #### 0.0.2-alpha - Saturday, September 9, 2020
 
 **Bugfixes:**

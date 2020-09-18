@@ -11,10 +11,13 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageReleaseNotes>
       **Additions:FSharpReadyComplete**
-        * Second template for the pack which contains
-        * documentation creation with FSharpFormatting support
-        * a test environment
-        * additional build targets
+      * Second template for the pack which contains
+      * documentation creation with FSharpFormatting support
+      * a test environment
+      * additional build targets
+
+      **Changes**
+      * shorten shortnames of templates to fsr-slim and fsr-complete
     </PackageReleaseNotes>
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>

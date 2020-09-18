@@ -4,7 +4,7 @@
   "classifications": [ "Common", "Scaffold", "F#" ],
   "identity": "FSharpReadyComplete",
   "name": "FSharpReadyComplete",
-  "shortName": "FSharpReadyComplete",
+  "shortName": "fsr-complete",
   "tags": {
     "language": "F#",
     "type": "project"
