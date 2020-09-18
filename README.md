@@ -28,13 +28,21 @@ At the moment it contains two project templates:
    dotnet new fsr-slim -n ProjectName
    //or
    dotnet new fsr-complete -n ProjectName
-  
-   //By default the project will be set to be compiled to netstandard 2.1. This can changed using the `-im` flag. IE: 
+   </pre>
+   
+   By default the project will be set to be compiled to netstandard 2.1. This can changed using the `-im` flag. IE: 
+   
+   `WARNING:` Do not set multiple target frameworks when using this argument. Add them manually afterwards.
+   <pre>
+   
    dotnet new fsr-slim -n ProjectName -im net45
    //or
    dotnet new fsr-complete -n ProjectName -im net45
-  
-   //All available flags can be checked using
+   </pre>
+   
+   All available flags can be checked using
+   
+   <pre>
    dotnet new fsr-slim -h
    //or
    dotnet new fsr-complete -h
