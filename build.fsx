@@ -57,13 +57,10 @@ let runDotNet cmd workingDir =
         Fake.DotNet.DotNet.exec (Fake.DotNet.DotNet.Options.withWorkingDirectory workingDir) cmd ""
     if result.ExitCode <> 0 then failwithf "'dotnet %s' failed in %s" cmd workingDir
 
-
 let clean = BuildTask.create "clean" [] {
     !! "templates/**/bin"
     ++ "templates/**/obj"
-    ++ "tests/slim"
-    ++ "tests/complete"
-    ++ "tests/dotnet"
+    ++ "tests"
     ++ "pkg"
     |> Shell.cleanDirs 
 }
@@ -105,14 +102,16 @@ let installTemplate =  BuildTask.create "installTemplate" [pack] {
 }
 
 let testTemplate =  BuildTask.create "testTemplate" [installTemplate] {
+
+    Directory.create (__SOURCE_DIRECTORY__ @@ "tests/slim")
+    Directory.create (__SOURCE_DIRECTORY__ @@ "tests/complete")
+
     runDotNet "new fsr-slim" (__SOURCE_DIRECTORY__ @@ "tests/slim")
     //runDotNet "fake build" (__SOURCE_DIRECTORY__ @@ "tests/slim")
 
     runDotNet "new fsr-complete" (__SOURCE_DIRECTORY__ @@ "tests/complete")
     //runDotNet "fake build" (__SOURCE_DIRECTORY__ @@ "tests/complete")
 
-    runDotNet "new fsr-dotnet" (__SOURCE_DIRECTORY__ @@ "tests/dotnet")
-    //runDotNet "fake build" (__SOURCE_DIRECTORY__ @@ "tests/dotnet")
 }
 
 let bootstrapBuildDependencies = BuildTask.createEmpty "bootstrapBuildDependencies" []
