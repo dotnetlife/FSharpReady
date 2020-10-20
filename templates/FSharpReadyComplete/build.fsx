@@ -390,12 +390,40 @@ let generateDocumentation =
             DotNet.exec
                 id
                 "fsdocs"
-                "build --eval"
+                (sprintf "build --eval --property Configuration=%s" configuration)
         
         if not result.OK then 
             failwith "error generating docs" 
     }
 
+let crackDocumentationCharts = 
+    BuildTask.create "crackDocumentationCharts" [generateDocumentation] {
+        let tempDocsDir = "output/content"
+        Shell.replaceInFiles 
+            (seq {
+                yield "<table class=\"pre\"><tr><td><pre><code>\"&lt;","&lt;"
+                yield "&gt;\"</code></pre></td></tr></table>","&gt;"
+                yield "&lt;","<"
+                yield "&gt;",">"
+            }) 
+            (Directory.EnumerateFiles tempDocsDir |> Seq.filter (fun x -> x.EndsWith(".html")))
+    }
+
+// --------------------------------------------------------------------------------------
+// Local Docs
+let buildLocalDocs = 
+    BuildTask.create "buildLocalDocs" [crackDocumentationCharts] {
+        let tempDocsDir = "temp/localDocs"
+        Shell.cleanDir tempDocsDir |> ignore
+        Shell.copyRecursive "output/content" tempDocsDir true  |> printfn "%A"
+        Shell.replaceInFiles 
+            (seq {
+                yield "href=\"" + docLink + "content/","href=\""
+                yield "src=\"" + docLink + "content/","src=\""
+                yield "src=\"" + docLink,"src=\""
+            }) 
+            (Directory.EnumerateFiles tempDocsDir |> Seq.filter (fun x -> x.EndsWith(".html")))
+    }
 
 //let generateSingleDocumentation =
 
@@ -466,20 +494,6 @@ let releaseNugetPackageOnGithub =
         Shell.copy tempNugetDir files
     }
 
-// --------------------------------------------------------------------------------------
-// Local Docs
-let buildLocalDocs = 
-    BuildTask.create "buildLocalDocs" [generateDocumentation] {
-        let tempDocsDir = "temp/localDocs"
-        Shell.cleanDir tempDocsDir |> ignore
-        Shell.copyRecursive "docs/output" tempDocsDir true  |> printfn "%A"
-        Shell.replaceInFiles 
-            (seq {
-                yield "href=\"" + docLink + "/","href=\""
-                yield "src=\"" + docLink + "/","src=\""}) 
-            (Directory.EnumerateFiles tempDocsDir |> Seq.filter (fun x -> x.EndsWith(".html")))
-    }
-
 //let testSingleDocumentationPage =
 
 //    BuildTask.createFn "testSingleDocumentationPage" [generateSingleDocumentation] ( fun p ->
@@ -519,6 +533,7 @@ let fullBuildChainLocal =
         runTestsAll
         cleanDocs
         generateDocumentation
+        crackDocumentationCharts
         BuildReleasePackages
     ]
 
@@ -593,6 +608,7 @@ let buildDocsChain =
         runTestsAll
         cleanDocs
         generateDocumentation
+        crackDocumentationCharts
     ]
 
 

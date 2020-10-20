@@ -32,6 +32,7 @@ let myList = [1;2;3]
 
 (*** include-value:myList ***)
 
-let myChart = myList |> List.zip myList |> Chart.Point
+myList |> List.zip myList |> Chart.Point
+|> GenericChart.toChartHTML
 
-(*** include-value:myChart ***)
+(*** include-it ***)
