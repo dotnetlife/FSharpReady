@@ -123,7 +123,7 @@ let clean =
 
 let cleanDocs = 
     BuildTask.create "cleanDocs" [] {
-        Shell.cleanDirs ["docs"]
+        Shell.cleanDirs ["output"]
     }
 
 // --------------------------------------------------------------------------------------------------------------------------------
@@ -388,29 +388,30 @@ let generateDocumentation =
     BuildTask.create "generateDocumentation" [cleanDocs; buildAll.IfNeeded] {
         let result =
             DotNet.exec
-                (fun p -> { p with WorkingDirectory = __SOURCE_DIRECTORY__ @@ "docsrc" @@ "tools" })
-                "fsi"
-                "--define:RELEASE --define:REFERENCE --define:HELP --exec generate.fsx"
-
+                id
+                "fsdocs"
+                "build --eval"
+        
         if not result.OK then 
             failwith "error generating docs" 
     }
 
-let generateSingleDocumentation =
 
-    BuildTask.createFn "generateSingleDocumentation" [cleanDocs; buildAll.IfNeeded] ( fun p ->
+//let generateSingleDocumentation =
 
-        let docsPage = __SOURCE_DIRECTORY__ @@ "docsrc/content/" @@ p.Context.Arguments.[0]
+//    BuildTask.createFn "generateSingleDocumentation" [cleanDocs; buildAll.IfNeeded] ( fun p ->
 
-        let result =
-            DotNet.exec
-                (fun p -> { p with WorkingDirectory = __SOURCE_DIRECTORY__ @@ "docsrc" @@ "tools" })
-                "fsi"
-                (sprintf "--define:RELEASE --define:REFERENCE --define:HELP --exec --use:generateSingle.fsx %s" docsPage)
+//        let docsPage = __SOURCE_DIRECTORY__ @@ "docsrc/content/" @@ p.Context.Arguments.[0]
 
-        if not result.OK then 
-            failwith "error generating docs" 
-    )
+//        let result =
+//            DotNet.exec
+//                (fun p -> { p with WorkingDirectory = __SOURCE_DIRECTORY__ @@ "docsrc" @@ "tools" })
+//                "fsi"
+//                (sprintf "--define:RELEASE --define:REFERENCE --define:HELP --exec --use:generateSingle.fsx %s" docsPage)
+
+//        if not result.OK then 
+//            failwith "error generating docs" 
+//    )
 
 // --------------------------------------------------------------------------------------
 // Release Scripts
@@ -479,24 +480,24 @@ let buildLocalDocs =
             (Directory.EnumerateFiles tempDocsDir |> Seq.filter (fun x -> x.EndsWith(".html")))
     }
 
-let testSingleDocumentationPage =
+//let testSingleDocumentationPage =
 
-    BuildTask.createFn "testSingleDocumentationPage" [generateSingleDocumentation] ( fun p ->
-        let docsPage = 
-            p.Context.Arguments.[0]
-                .Replace(".fsx",".html")
-        let docsPageName = Path.GetFileName docsPage
-        let tempDocsDir = "temp/localDocs"
-        Shell.cleanDir tempDocsDir |> ignore
-        Shell.copyFile ("temp/localDocs" </> docsPageName) ("docs/output" </> docsPageName)  |> printfn "%A"
-        Shell.replaceInFiles 
-            (seq {
-                yield "href=\"/" + project + "/","href=\""
-                yield "src=\"/" + project + "/","src=\""}) 
-            (Directory.EnumerateFiles tempDocsDir |> Seq.filter (fun x -> x.EndsWith(".html")))
-        let psi = new System.Diagnostics.ProcessStartInfo(FileName = (__SOURCE_DIRECTORY__ </> "temp/localDocs" </> docsPageName), UseShellExecute = true)
-        System.Diagnostics.Process.Start(psi) |> ignore
-    )
+//    BuildTask.createFn "testSingleDocumentationPage" [generateSingleDocumentation] ( fun p ->
+//        let docsPage = 
+//            p.Context.Arguments.[0]
+//                .Replace(".fsx",".html")
+//        let docsPageName = Path.GetFileName docsPage
+//        let tempDocsDir = "temp/localDocs"
+//        Shell.cleanDir tempDocsDir |> ignore
+//        Shell.copyFile ("temp/localDocs" </> docsPageName) ("docs/output" </> docsPageName)  |> printfn "%A"
+//        Shell.replaceInFiles 
+//            (seq {
+//                yield "href=\"/" + project + "/","href=\""
+//                yield "src=\"/" + project + "/","src=\""}) 
+//            (Directory.EnumerateFiles tempDocsDir |> Seq.filter (fun x -> x.EndsWith(".html")))
+//        let psi = new System.Diagnostics.ProcessStartInfo(FileName = (__SOURCE_DIRECTORY__ </> "temp/localDocs" </> docsPageName), UseShellExecute = true)
+//        System.Diagnostics.Process.Start(psi) |> ignore
+//    )
 
 let inspectLocalDocs =
     BuildTask.create "inspectLocalDocs" [buildLocalDocs] {

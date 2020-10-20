@@ -1,0 +1,13 @@
+<Project>
+ <PropertyGroup>
+    <PackageLicenseUrl>https://github.com/ownersPlaceHolder/FSharpReady/blob/master/License.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://ownersPlaceHolder.github.io/FSharpReady/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ownersPlaceHolder/FSharpReady/</RepositoryUrl>
+	<FsDocsLogoLink>https://fsharp.org</FsDocsLogoLink>
+    <FsDocsLicenseLink>https://github.com/ownersPlaceHolder/FSharpReady/blob/master/License.txt</FsDocsLicenseLink>
+    <FsDocsReleaseNotesLink>https://github.com/ownersPlaceHolder/FSharpReady/blob/master/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
+    <FsDocsNavbarPosition>fixed-left</FsDocsNavbarPosition>
+    <FsDocsWarnOnMissingDocs>true</FsDocsWarnOnMissingDocs>
+    <FsDocsTheme>default</FsDocsTheme>
+ </PropertyGroup>
+</Project>

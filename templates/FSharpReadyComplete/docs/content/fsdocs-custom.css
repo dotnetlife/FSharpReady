@@ -1,3 +1,20 @@
+/* Navigation Pane */
+
+#navbarsExampleDefault .nav-header {
+  font-size:12pt;
+  color:#606060;
+  margin-top:20px;
+  font-weight: bold;
+}
+
+#navbarsExampleDefault .nav-link {
+  font-size:11pt;
+  color:#0088cc;
+}
+
+
+/* FSharp Code scrollbar */
+
 table.pre {
 	border: hidden;
 	overflow-x: auto;
