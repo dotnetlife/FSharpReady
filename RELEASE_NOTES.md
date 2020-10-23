@@ -1,4 +1,10 @@
-﻿#### 0.0.3-alpha - Friday, September 17, 2020
+﻿#### 0.0.4-alpha - Wednesday, October 21, 2020
+
+**Changes**
+* Switch documentation generation to FSharpFormatting command line tool
+* Switch documentation charting generation to Plotly.NET
+
+#### 0.0.3-alpha - Friday, September 17, 2020
 
 **Additions:FSharpReadyComplete**
 * Second template for the pack which contains

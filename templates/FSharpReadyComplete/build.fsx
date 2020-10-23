@@ -396,13 +396,13 @@ let generateDocumentation =
             failwith "error generating docs" 
     }
 
-let crackDocumentationCharts = 
-    BuildTask.create "crackDocumentationCharts" [generateDocumentation] {
+let crackDocumentationInlineItems = 
+    BuildTask.create "crackDocumentationInlineItems" [generateDocumentation] {
         let tempDocsDir = "output/content"
         Shell.replaceInFiles 
             (seq {
-                yield "<table class=\"pre\"><tr><td><pre><code>\"&lt;","&lt;"
-                yield "&gt;\"</code></pre></td></tr></table>","&gt;"
+                yield "<table class=\"pre\"><tr><td><pre><code>\"&lt;inlineHTML&gt;",""
+                yield "&lt;/inlineHTML&gt;\"</code></pre></td></tr></table>",""
                 yield "&lt;","<"
                 yield "&gt;",">"
             }) 
@@ -412,7 +412,7 @@ let crackDocumentationCharts =
 // --------------------------------------------------------------------------------------
 // Local Docs
 let buildLocalDocs = 
-    BuildTask.create "buildLocalDocs" [crackDocumentationCharts] {
+    BuildTask.create "buildLocalDocs" [crackDocumentationInlineItems] {
         let tempDocsDir = "temp/localDocs"
         Shell.cleanDir tempDocsDir |> ignore
         Shell.copyRecursive "output/content" tempDocsDir true  |> printfn "%A"
@@ -533,7 +533,7 @@ let fullBuildChainLocal =
         runTestsAll
         cleanDocs
         generateDocumentation
-        crackDocumentationCharts
+        crackDocumentationInlineItems
         BuildReleasePackages
     ]
 
@@ -608,7 +608,7 @@ let buildDocsChain =
         runTestsAll
         cleanDocs
         generateDocumentation
-        crackDocumentationCharts
+        crackDocumentationInlineItems
     ]
 
 

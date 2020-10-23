@@ -3,8 +3,10 @@
 // it to define helpers that you do not want to show in the documentation.
 #I @"../../bin/FSharpReady/implementationPlaceHolder/"
 #r @"../../packages/formatting/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
-#r @"../../packages/formatting/FSharp.Plotly/lib/netstandard2.0/FSharp.Plotly.dll"
-open FSharp.Plotly
+#r @"../../packages/formatting/Plotly.NET/lib/netstandard2.0/Plotly.NET.dll"
+open Plotly.NET
+
+let inlineHTML = sprintf "<inlineHTML>%s</inlineHTML>"
 (**
 Introduction
 ============
@@ -34,5 +36,6 @@ let myList = [1;2;3]
 
 myList |> List.zip myList |> Chart.Point
 |> GenericChart.toChartHTML
+|> inlineHTML
 
 (*** include-it ***)
